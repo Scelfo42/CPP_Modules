@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:37:04 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/13 19:16:28 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/16 16:43:21 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ class Contact
 		Contact( void );
 		~Contact( void );
 
-		std::string checkValue( int field );
-		std::string	setField( int field );
-		std::string setValue( std::string field, std::string value );
-		std::string	getValue( std::string field );
+		std::string	checkValue( int field );
+		std::string setValue( int field, std::string value );
+		std::string	getValue( int field );
 };
 
 #endif

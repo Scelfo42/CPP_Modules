@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:14 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/13 19:13:16 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/16 16:52:37 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class PhoneBook
 		PhoneBook( void );
 		~PhoneBook( void );
 
-		void		addContact( void );
-		void		searchContact( void );
+		void		addContact( bool* ctrlD );
+		void		searchContact( bool* ctrlD );
 };
 
 #endif
