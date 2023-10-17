@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:53 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/16 17:04:58 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/17 15:38:16 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static std::string chooseField( int field, int (**funct)(int) )
 	return ("Phone Number");
 }
 
-static bool	checkInput( std::string input, int (*funct)(int) )
+bool	checkInput( std::string input, int (*funct)(int) )
 {
 	size_t	len = input.length();
 

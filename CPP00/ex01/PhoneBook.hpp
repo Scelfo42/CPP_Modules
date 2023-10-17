@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:14 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/16 16:52:37 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/17 17:38:52 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ class PhoneBook
 	private:
 		Contact		_contacts[8];
 		int			_countContacts;
+		int			_replaceOldest;
 	public:
 		PhoneBook( void );
 		~PhoneBook( void );
 
 		void		addContact( bool* ctrlD );
 		void		searchContact( bool* ctrlD );
+		void		indexPrint( int index );
 };
 
 #endif
