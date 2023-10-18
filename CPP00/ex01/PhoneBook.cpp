@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:35:59 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/17 18:02:04 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/18 19:28:51 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,101 +26,79 @@ PhoneBook::~PhoneBook( void )
 
 void	PhoneBook::addContact( bool* ctrlD )
 {
+	int	index;
+
+	index = (this->_countContacts < 8) ? this->_countContacts : this->_replaceOldest;
+	for (int field = 0; field < 5; field++)
+	{
+		if (!this->_contacts[index].checkValue(field).compare(""))
+		{
+			*ctrlD = true;
+			break ;
+		}
+	}
 	if (this->_countContacts < 8)
-	{
-		for (int field = 0; field < 5; field++)
-		{
-			if (!this->_contacts[this->_countContacts].checkValue(field).compare(""))
-			{
-				*ctrlD = true;
-				break ;
-			}
-		}
 		this->_countContacts++;
-	}
 	else
-	{
-		for (int field = 0; field < 5; field++)
-		{
-			if (!this->_contacts[this->_replaceOldest].checkValue(field).compare(""))
-			{
-				*ctrlD = true;
-				break ;
-			}
-		}
-		this->_replaceOldest++;
-		if (this->_replaceOldest == this->_countContacts)
-			this->_replaceOldest = 0;
-	}
+		(this->_replaceOldest == this->_countContacts - 1) ? (this->_replaceOldest = 0) : this->_replaceOldest++;
 }
 
-void	PhoneBook::indexPrint( int index )
+bool	PhoneBook::checkInputRange( std::string input, int *index )
 {
-	if (index > 8 || this->_countContacts < index)
-		std::cerr << "No contact found at this index" << std::endl;
-	else
+	*index = std::atoi( input.c_str() );
+	if (*index == 0 || *index > 8 || this->_countContacts < *index)
 	{
-		std::cout << index << std::endl;
-		for (int i = 0; i < 5; i++)
-			std::cout << this->_contacts[index - 1].getValue(i) << std::endl;
+		std::cerr << std::endl << "No contact found at this index" << std::endl;
+		return false;
 	}
+	return true;
 }
 
 void	PhoneBook::searchContact( bool* ctrlD )
 {
-	std::string	contact_info;
-	std::string line;
 	std::string input;
-	size_t		len;
+	int			index;
 	
-	if (this->_countContacts == 0)
+	if (this->_countContacts != 0)
 	{
-		std::cout << std::endl << "There isn't any contact saved" << std::endl;
-		return ;
-	}
-	for (int i = 0; i < this->_countContacts; i++)
-	{
-		std::cout << "         " << (i + 1) << " | ";
-		for (int j = 0; j < 3; j++)
+		for (int i = 0; i < this->_countContacts; i++)
+			this->_contacts[i].printInfo(i);
+		while (!std::cin.eof())
 		{
-			line.assign("          ");
-			contact_info = this->_contacts[i].getValue(j);
-			len = contact_info.length();
-			if (len > 10)
-				len = 10;
-			line.replace(10 - len, len, contact_info);
-			if (contact_info.length() > 10)
+			std::cout << std::endl << "Select a contact index or just write 'no' to move on: ";
+			std::getline(std::cin, input);
+			if (std::cin.eof())
+				continue ;
+			else if (!input.compare("no"))
 			{
-				line.replace(10, 10, ".");
-				line.resize(11);
+				std::cout << "Ok!" << std::endl;
+				return ;
 			}
-			std::cout << line;
-			if (j != 2 && line.find('.', 10) != 10)
-				std::cout << " ";
-			if (j != 2)
-				std::cout << "| ";
+			else if (!checkInput( input, std::isdigit ))
+				std::cerr << std::endl << "Index must be numeric." << std::endl;
+			else if (checkInputRange( input, &index ))
+			{
+				this->_contacts[index - 1].indexPrint();
+				return ;
+			}
+			else
+			{
+				std::cout << "Would you like to select another index? Select 'y' or 'n': ";
+				std::getline(std::cin, input);
+				if (std::cin.eof() || !input.compare("y"))
+					continue;
+				else if (!input.compare("n"))
+					return ;
+				else
+				{
+					std::cout << "Wrong input, exiting..." << std::endl;
+					return ;
+				}
+			}
 		}
-		std::cout << std::endl;
+		*ctrlD = true;
 	}
-	while (!std::cin.eof())
-	{
-		std::cout << std::endl << "Select a contact index to visualize all information about it: ";
-		std::getline(std::cin, input);
-		if (std::cin.eof())
-			continue ;
-		else if (!input.compare("no"))
-		{
-			std::cout << "Ok!" << std::endl;
-			return ;
-		}
-		else if (input.compare("") && checkInput( input, std::isdigit ))
-		{
-			indexPrint( atoi( input.c_str() ) );
-			return ;
-		}
-		else
-			std::cerr << "Index must be numeric." << std::endl;
-	}
-	*ctrlD = true;
+	else
+		std::cout << std::endl << "There isn't any contact saved" << std::endl;
 	return ;
 }

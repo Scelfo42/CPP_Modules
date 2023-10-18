@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:37:04 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/17 15:21:58 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/18 19:33:47 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 #include <string>
 
 class Contact
@@ -31,7 +32,10 @@ class Contact
 
 		std::string	checkValue( int field );
 		std::string setValue( int field, std::string value );
-		std::string	getValue( int field );
+		std::string	getValue( int field, std::string (*print)(std::string, const char *), bool printFlag );
+		void		printInfo( int contactIndex );
+		void		indexPrint( void );
+
 };
 
 bool	checkInput( std::string input, int (*funct)(int) );

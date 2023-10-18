@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:53 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/17 15:38:16 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/18 19:31:57 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,24 @@ Contact::~Contact( void )
 	return ;
 }
 
-std::string	Contact::getValue( int field )
+static std::string	getValuePrint(std::string contactField, const char *infoField)
+{
+	std::cout << infoField << ": ";
+	return contactField;
+}
+
+std::string	Contact::getValue( int field, std::string (*print)(std::string, const char *), bool printFlag )
 {
 	if (field == 0)
-		return this->_firstName;
+		return printFlag == true ? print(_firstName, "First Name") : _firstName;
 	else if (field == 1)
-		return this->_lastName;
+		return printFlag == true ? print(_lastName, "Last Name") : _lastName;
 	else if (field == 2)
-		return this->_nickname;
+		return printFlag == true ? print(_nickname, "Nickname") : _nickname;
 	else if (field == 3)
-		return this->_phoneNumber;
+		return printFlag == true ? print(_phoneNumber, "Phone number") : _phoneNumber;
 	else if (field == 4)
-		return this->_darkestSecret;
+		return printFlag == true ? print(_darkestSecret, "Darkest secret") : _darkestSecret;
 	return "";
 }
 
@@ -76,7 +82,7 @@ bool	checkInput( std::string input, int (*funct)(int) )
 {
 	size_t	len = input.length();
 
-	if (funct)
+	if (funct && len > 0)
 	{
 		for (size_t i = 0; i < len; i++)
 		{
@@ -106,4 +112,28 @@ std::string	Contact::checkValue( int field )
 			std::cerr << "Input is incorrect" << std::endl;
 	}
 	return "";
+}
+
+void	Contact::printInfo( int contactIndex )
+{
+	std::string	info;
+
+	std::cout << std::setw(10) << std::right << (contactIndex + 1) << " | ";
+	for (int i = 0; i < 3; i++)
+	{
+		info.assign(getValue(i, getValuePrint, false));
+		if (info.length() > 10)
+		{
+			info.assign(info.substr(0, 9));
+			info.append(".");
+		}
+		std::cout << std::setw(10) << std::right << info << " | ";
+	}
+	std::cout << std::endl;
+}
+
+void	Contact::indexPrint( void )
+{
+	for (int i = 0; i < 5; i++)
+		std::cout << getValue(i, getValuePrint, true) << std::endl;
 }

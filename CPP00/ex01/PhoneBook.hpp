@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:14 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/17 17:38:52 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:19:53 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PhoneBook
 
 		void		addContact( bool* ctrlD );
 		void		searchContact( bool* ctrlD );
-		void		indexPrint( int index );
+		bool		checkInputRange( std::string input, int *index );
 };
 
 #endif
