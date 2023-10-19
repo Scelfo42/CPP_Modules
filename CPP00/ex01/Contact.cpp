@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:53 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/18 19:31:57 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/19 17:18:59 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static std::string	getValuePrint(std::string contactField, const char *infoField
 	return contactField;
 }
 
-std::string	Contact::getValue( int field, std::string (*print)(std::string, const char *), bool printFlag )
+std::string	Contact::getValue( int field, std::string (*print)(std::string, const char *), bool printFlag ) const
 {
 	if (field == 0)
 		return printFlag == true ? print(_firstName, "First Name") : _firstName;

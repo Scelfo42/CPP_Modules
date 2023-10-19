@@ -6,16 +6,14 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:35:59 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/18 19:28:51 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/19 17:27:58 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook( void )
+PhoneBook::PhoneBook( void ) : _countContacts(0), _replaceOldest(0)
 {
-	this->_countContacts = 0;
-	this->_replaceOldest = 0;
 	return ;
 }
 
@@ -48,7 +46,7 @@ bool	PhoneBook::checkInputRange( std::string input, int *index )
 	*index = std::atoi( input.c_str() );
 	if (*index == 0 || *index > 8 || this->_countContacts < *index)
 	{
-		std::cerr << std::endl << "No contact found at this index" << std::endl;
+		std::cerr << std::endl << "No contact found at this index" << std::endl << std::endl;
 		return false;
 	}
 	return true;
