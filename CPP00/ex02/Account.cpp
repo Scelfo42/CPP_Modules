@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:30:07 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/23 15:28:28 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/23 15:44:55 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ Account::~Account( void )
 {
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
-	std::cout << "amount:" << this->_amount << ";";
+	std::cout << "amount:" << this->checkAmount() << ";";
 	std::cout << "closed" << std::endl;
+	this->_nbAccounts--;
+	Account::_totalAmount -= this->checkAmount();
 }
 
 int	Account::getNbAccounts( void )
@@ -73,15 +75,15 @@ void	Account::displayAccountsInfos( void )
 
 void	Account::_displayTimestamp( void )
 {
-	time_t		current_time = time(0);
-	std::tm*	local_time = std::localtime(&current_time);
+	time_t		currentTime = time(0);
+	std::tm*	localTime = std::localtime(&currentTime);
 
-	std::cout << "[" << local_time->tm_year + 1900;
-	std::cout << local_time->tm_mon + 1;
-	std::cout << local_time->tm_mday << "_";
-	std::cout << local_time->tm_hour;
-	std::cout << local_time->tm_min;
-	std::cout << local_time->tm_sec << "] ";
+	std::cout << "[" << localTime->tm_year + 1900;
+	std::cout << localTime->tm_mon + 1;
+	std::cout << localTime->tm_mday << "_";
+	std::cout << localTime->tm_hour;
+	std::cout << localTime->tm_min;
+	std::cout << localTime->tm_sec << "] ";
 }
 
 int		Account::checkAmount( void ) const
