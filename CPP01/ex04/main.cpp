@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 17:39:21 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/27 16:37:42 by cscelfo          ###   ########.fr       */
+/*   Created: 2023/10/27 17:19:36 by cscelfo           #+#    #+#             */
+/*   Updated: 2023/10/27 18:21:22 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#include "replacer.hpp"
 
-#include "Weapon.hpp"
-
-class HumanB
+int	main( int argc, char **argv )
 {
-	private:
-		Weapon		*_gun;
-		std::string	_name;
-	public:
-		HumanB( std::string name );
-		~HumanB( void );
-		
-		void	attack( void );
-		void	setWeapon( Weapon& weapon );
-};
+	std::stringstream	ss;
 
-#endif
+	if (inputError(argc, argv))
+		return 1;
+	return 0;
+}

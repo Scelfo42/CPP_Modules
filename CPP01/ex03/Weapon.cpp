@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:32:37 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/26 17:48:08 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/27 15:42:10 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ Weapon::~Weapon( void )
 	return ;
 }
 
-std::string const & Weapon::getType( std::string type )
+std::string const & Weapon::getType( void ) const
 {
-	return ;
+	return this->_type;
 }
 
 void	Weapon::setType( std::string type )
 {
+	this->_type = type;
 	return ;
 }

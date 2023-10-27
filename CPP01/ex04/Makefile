@@ -1,4 +1,4 @@
-NAME = War
+NAME = Replacer
 
 CC = c++
 
@@ -7,9 +7,6 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRCS =	main.cpp \
-		HumanA.cpp \
-		HumanB.cpp \
-		Weapon.cpp
 
 O_SRCS = $(SRCS:.cpp=.o)
 
@@ -24,7 +21,7 @@ $(NAME): $(O_SRCS)
 clean:
 	$(RM) $(O_SRCS)
 
-fclean: clean
+fclean:
 	$(RM) $(NAME)
 
 re: fclean all

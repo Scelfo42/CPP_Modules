@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:33:22 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/26 17:48:18 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/27 16:22:18 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 class HumanA
 {
 	private:
-		Weapon		_gun;
+		Weapon&		_gun;
 		std::string	_name;
 	public:
-		HumanA( std::string name, Weapon weapon );
+		HumanA( std::string name, Weapon& weapon );
 		~HumanA( void );
-		
+
 		void	attack( void );
 };
 

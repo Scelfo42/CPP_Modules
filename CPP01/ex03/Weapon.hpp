@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:29:04 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/26 17:46:34 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/10/27 15:41:29 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Weapon
 		Weapon( std::string type );
 		~Weapon( void );
 
-		std::string const &	getType( std::string type );
+		std::string const &	getType( void ) const;
 		void				setType( std::string type );
 };
 
