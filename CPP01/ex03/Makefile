@@ -39,7 +39,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)...and $(CYAN)${NAME} $(RED)as been removed"
+	@echo "$(RED)...and $(CYAN)${NAME} $(RED)has been removed"
 
 re: fclean all
 

@@ -1,10 +1,20 @@
 NAME    :=  Replacer
 
+INFILE	:=	infile
+
+OUTFILE	:=	$(INFILE).replace
+
+STR_TO_FIND	:=	" "
+
+REPLACE_STR	:=	"silente"
+
 CC      :=	c++
 
 FLAGS   :=	-g -Wall -Wextra -Werror -std=c++98
 
-SRCS	:=	main.cpp
+SRCS	:=	main.cpp \
+			error.cpp \
+			replaceContent.cpp \
 			
 OBJS     := $(SRCS:.cpp=.o)
 
@@ -32,13 +42,23 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -f $(OBJS)
+	@rm -f $(OUTFILE)
 	@echo "$(RED)All $(CYAN)$(NAME)$(RED)'s objects removed with $(WHITE)${RM} $(YELLOW)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)...and $(CYAN)${NAME} $(RED)as been removed"
+	@rm -f $(INFILE)
+	@echo "$(RED)...and $(CYAN)${NAME} $(RED)has been removed"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: all
+	@clear
+	@echo "ciao" >> $(INFILE)
+	@echo "bob" >> $(INFILE)
+	@echo "come" >> $(INFILE)
+	@echo "stai" >> $(INFILE)
+	./test.sh $(NAME) $(INFILE) $(STR_TO_FIND) $(REPLACE_STR) $(OUTFILE)
+
+.PHONY: all clean fclean re run
 .SILENT:

@@ -5,28 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 17:19:36 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/30 15:32:58 by cscelfo          ###   ########.fr       */
+/*   Created: 2023/10/30 17:20:23 by cscelfo           #+#    #+#             */
+/*   Updated: 2023/10/30 17:55:55 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "replacer.hpp"
+#include "Harl.hpp"
 
-int	main( int argc, char **argv )
+int	main(int argc, char **argv)
 {
-	std::ifstream		inputFile;
-	std::ofstream		outputFile;
-	std::string			filename;
+	Harl		harl;
+	std::string	level;
 
-	if (inputError(argc, argv, filename))
-		return 1;
-
-	inputFile.open(argv[1]);
-	outputFile.open(filename.c_str(), std::ofstream::trunc);
-
-	replaceFileContent(inputFile, outputFile, argv);
-
-	inputFile.close();
-	outputFile.close();
+	while (!std::cin.eof())
+	{
+		std::cout << "Please insert a complain level: ";
+		std::getline(std::cin, level);
+		if (std::cin.eof() || !level.compare(""))
+			continue;
+		for (int i = 0; i < level.size(); i++)
+			level[i] = std::toupper(level[i]);
+		if (!level.compare("EXIT"))
+			break ;
+		harl.complain(level);
+	}
 	return 0;
 }
