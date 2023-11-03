@@ -6,53 +6,159 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:12:14 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/02 17:12:27 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/03 14:46:46 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed( void ) : _fixedNumber(0) { std::cout << "Default constructor called" << std::endl; }
+//========= CONSTRUCTOR =========//
 
-Fixed::Fixed( Fixed const & newInstance )
-{
-	std::cout << "Copy constructor called" << std::endl;
-	*this = newInstance;
-}
+Fixed::Fixed( void ) : _fixedNumber(0) { }
 
-Fixed::Fixed( int const intNumber )
-{
-	std::cout << "Int constructor called" << std::endl;
-	this->_fixedNumber = intNumber << this->_fractionalBits;
-}
+Fixed::Fixed( Fixed const & newInstance ) { *this = newInstance; }
 
-Fixed::Fixed( float const floatNumber )
-{
-	std::cout << "Float constructor called" << std::endl;
-	this->_fixedNumber = roundf(floatNumber * (1 << this->_fractionalBits));
-}
+Fixed::Fixed( int const intNumber ) : _fixedNumber(intNumber << this->_fractionalBits) { }
 
-Fixed::~Fixed( void ) { std::cout << "Destructor called" << std::endl; }
+Fixed::Fixed( float const floatNumber ) : _fixedNumber(roundf(floatNumber * (1 << this->_fractionalBits))) { }
 
-Fixed&	Fixed::operator=( Fixed const & modifiedInstance )
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	if (this == &modifiedInstance) // how to handle self-assignment
-		return *this;
-	this->_fixedNumber = modifiedInstance.getRawBits();
-	return *this;
-}
+//========= DESTRUCTOR =========//
+
+Fixed::~Fixed( void ) { }
+
+//========= GETTER FUNCTION =========//
 
 int	Fixed::getRawBits( void ) const { return this->_fixedNumber; }
 
+//========= SETTER FUNCTION =========//
+
 void	Fixed::setRawBits( int const raw ) { this->_fixedNumber = raw; }
 
-float Fixed::toFloat( void ) const { return (static_cast<float>(this->_fixedNumber) / (1 << this->_fractionalBits)); }
+//========= FROM-TO FUNCTIONS =========//
+
+float Fixed::toFloat( void ) const { return (float)(this->_fixedNumber) / (float)(1 << this->_fractionalBits); }
 
 int	Fixed::toInt( void ) const { return this->_fixedNumber >> this->_fractionalBits; }
+
+//========= OPERATOR OUTPUT STREAM OVERLOAD =========//
 
 std::ostream&	operator<<( std::ostream & stdOutStream, Fixed const & instance)
 {
 	stdOutStream << instance.toFloat();
 	return stdOutStream;
+}
+
+//========= OPERATOR COMPARISON OVERLOAD =========//
+
+Fixed&	Fixed::operator=( Fixed const & modifiedInstance )
+{
+	if (this != &modifiedInstance)
+		this->_fixedNumber = modifiedInstance.getRawBits();
+	return *this;
+}
+
+bool	Fixed::operator>( Fixed const & otherInstance ) const
+{
+	return this->_fixedNumber > otherInstance.getRawBits();
+}
+
+bool	Fixed::operator<( Fixed const & otherInstance ) const
+{
+	return this->_fixedNumber < otherInstance.getRawBits();
+}
+
+bool	Fixed::operator>=( Fixed const & otherInstance ) const
+{
+	return this->_fixedNumber >= otherInstance.getRawBits();
+}
+
+bool	Fixed::operator<=( Fixed const & otherInstance ) const
+{
+	return this->_fixedNumber <= otherInstance.getRawBits();
+}
+
+bool	Fixed::operator==( Fixed const & otherInstance ) const
+{
+	return this->_fixedNumber == otherInstance.getRawBits();
+}
+
+bool	Fixed::operator!=( Fixed const & otherInstance ) const
+{
+	return this->_fixedNumber != otherInstance.getRawBits();
+}
+
+//========= OPERATOR ARITHMETIC OVERLOAD =========//
+
+Fixed	Fixed::operator+( Fixed const & otherInstance ) const
+{
+	return Fixed(this->toFloat() + otherInstance.toFloat());
+}
+
+Fixed	Fixed::operator-( Fixed const & otherInstance ) const
+{
+	return Fixed(this->toFloat() - otherInstance.toFloat());
+}
+
+Fixed	Fixed::operator*( Fixed const & otherInstance ) const
+{
+	return Fixed(this->toFloat() * otherInstance.toFloat());
+}
+
+Fixed	Fixed::operator/( Fixed const & otherInstance ) const
+{
+	return Fixed(this->toFloat() / otherInstance.toFloat());
+}
+
+//========= OPERATOR INCREMENT/DECREMENT OVERLOAD =========//
+
+Fixed	Fixed::operator++( int )
+{
+	float	currentNumber;
+
+	currentNumber = this->toFloat();
+	this->_fixedNumber++;
+	return Fixed(currentNumber);
+}
+
+Fixed	Fixed::operator--( int )
+{
+	float	currentNumber;
+
+	currentNumber = this->toFloat();
+	this->_fixedNumber--;
+	return Fixed(currentNumber);
+}
+
+Fixed&	Fixed::operator++( void )
+{
+	++this->_fixedNumber;
+	return *this;
+}
+
+Fixed&	Fixed::operator--( void )
+{
+	--this->_fixedNumber;
+	return *this;
+}
+
+//========= STATIC MEMBER FUNCTIONS =========//
+
+Fixed&	Fixed::min( Fixed& firstInstance, Fixed& secondInstance )
+{
+	return firstInstance.getRawBits() < secondInstance.getRawBits() ? firstInstance : secondInstance;
+}
+
+Fixed const &	Fixed::min( Fixed const & firstInstance, Fixed const & secondInstance )
+{
+	return firstInstance.getRawBits() < secondInstance.getRawBits() ? firstInstance : secondInstance;
+}
+
+Fixed&	Fixed::max( Fixed& firstInstance, Fixed& secondInstance )
+{
+	return firstInstance.getRawBits() > secondInstance.getRawBits() ? firstInstance : secondInstance;
+}
+
+Fixed const &	Fixed::max( Fixed const & firstInstance, Fixed const & secondInstance )
+{
+	return firstInstance.getRawBits() > secondInstance.getRawBits() ? firstInstance : secondInstance;
 }
