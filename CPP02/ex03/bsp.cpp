@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:54:27 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/04 19:30:37 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:30:26 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,16 @@ static bool	checkEdge( Point const a, Point const b, Point const c, Point const 
 
 bool	bsp( Point const a, Point const b, Point const c, Point const point )
 {
+	static int	i = 0;
+
+	i++;
 	if (checkEdge(a, b, c, point))
 		return false;
 	int	masterTriangle = subArea(a, b, c);
+	std::cout << "masterTriangle: " << masterTriangle << std::endl;
 	int	subTriangles[3] = { subArea(a, b, point), subArea(b, c, point), subArea(a, c, point) };
+	std::cout << "subTriangles [" << i << "]: " << subTriangles[0] << " " << subTriangles[1] << " " << subTriangles[2] << std::endl;
 	int sumSubTriangles = subTriangles[0] + subTriangles[1] + subTriangles[2];
+	std::cout << "sumSubTriangles: " << sumSubTriangles << std::endl;
 	return (masterTriangle == sumSubTriangles);
 }

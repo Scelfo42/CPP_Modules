@@ -6,16 +6,15 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:06:13 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/03 12:50:17 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 20:42:38 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed( void ) : _fixedNumber(0)
-{
-	std::cout << "Default constructor called" << std::endl;
-}
+//========= CONSTRUCTOR =========//
+
+Fixed::Fixed( void ) : _fixedNumber(0) { std::cout << "Default constructor called" << std::endl; }
 
 Fixed::Fixed( Fixed const & newInstance )
 {
@@ -23,19 +22,15 @@ Fixed::Fixed( Fixed const & newInstance )
 	*this = newInstance;
 }
 
-Fixed::Fixed( int const intNumber )
-{
-	std::cout << "Int constructor called" << std::endl;
-	this->_fixedNumber = intNumber << this->_fractionalBits;
-}
+Fixed::Fixed( int const intNumber ) : _fixedNumber(intNumber << _fractionalBits) { std::cout << "Int constructor called" << std::endl; }
 
-Fixed::Fixed( float const floatNumber )
-{
-	std::cout << "Float constructor called" << std::endl;
-	this->_fixedNumber = roundf(floatNumber * (1 << this->_fractionalBits));
-}
+Fixed::Fixed( float const floatNumber ) : _fixedNumber(roundf(floatNumber * (1 << _fractionalBits))) { std::cout << "Float constructor called" << std::endl; }
+
+//========= DESTRUCTOR =========//
 
 Fixed::~Fixed( void ) { std::cout << "Destructor called" << std::endl; }
+
+//========= OPERATOR ASSIGNMENT OVERLOAD =========//
 
 Fixed&	Fixed::operator=( Fixed const & modifiedInstance )
 {
@@ -46,9 +41,15 @@ Fixed&	Fixed::operator=( Fixed const & modifiedInstance )
 	return *this;
 }
 
+//========= GETTER FUNCTION =========//
+
 int	Fixed::getRawBits( void ) const { return this->_fixedNumber; }
 
+//========= SETTER FUNCTION =========//
+
 void	Fixed::setRawBits( int const raw ) { this->_fixedNumber = raw; }
+
+//========= FROM-TO FUNCTIONS =========//
 
 float Fixed::toFloat( void ) const 
 {
@@ -59,6 +60,8 @@ int	Fixed::toInt( void ) const
 {
 	return this->_fixedNumber >> this->_fractionalBits; 
 }
+
+//========= OPERATOR OUTPUT STREAM OVERLOAD =========//
 
 std::ostream&	operator<<( std::ostream & stdOutStream, Fixed const & instance)
 {

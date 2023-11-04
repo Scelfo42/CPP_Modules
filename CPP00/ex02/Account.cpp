@@ -6,13 +6,15 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:30:07 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/23 15:44:55 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:14:08 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <ctime>
+
+//========= STATIC VARIABLES =========//
 
 int	Account::_nbAccounts = 0;
 
@@ -21,6 +23,8 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 
 int Account::_totalNbWithdrawals = 0;
+
+//========= CONSTRUCTOR =========//
 
 Account::Account( int initial_deposit ) : _nbDeposits(0), _nbWithdrawals(0)
 {
@@ -34,6 +38,8 @@ Account::Account( int initial_deposit ) : _nbDeposits(0), _nbWithdrawals(0)
 	std::cout << "created" << std::endl;
 }
 
+//========= DESTRUCTOR =========//
+
 Account::~Account( void )
 {
 	Account::_displayTimestamp();
@@ -44,25 +50,17 @@ Account::~Account( void )
 	Account::_totalAmount -= this->checkAmount();
 }
 
-int	Account::getNbAccounts( void )
-{
-	return (Account::_nbAccounts);
-}
+//========= GETTER FUNCTION =========//
 
-int Account::getTotalAmount( void )
-{
-	return (Account::_totalAmount);
-}
+int	Account::getNbAccounts( void ) { return Account::_nbAccounts; }
 
-int Account::getNbDeposits( void )
-{
-	return (Account::_totalNbDeposits);
-}
+int Account::getTotalAmount( void ) { return Account::_totalAmount; }
 
-int	Account::getNbWithdrawals( void )
-{
-	return (Account::_totalNbWithdrawals);
-}
+int Account::getNbDeposits( void ) { return Account::_totalNbDeposits; }
+
+int	Account::getNbWithdrawals( void ) { return Account::_totalNbWithdrawals; }
+
+//========= MEMBER FUNCTION =========//
 
 void	Account::displayAccountsInfos( void )
 {

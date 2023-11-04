@@ -6,11 +6,13 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:18:47 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/04 16:09:50 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:21:12 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
+
+//========= CONSTRUCTOR =========//
 
 FragTrap::FragTrap( void ) : ClapTrap() { std::cout << "FragTrap default constructor called" << std::endl; }
 
@@ -28,7 +30,11 @@ FragTrap::FragTrap( std::string name ) : ClapTrap(name)
 	this->setAttackDamage(30);
 }
 
+//========= DESTRUCTOR =========//
+
 FragTrap::~FragTrap( void ) { std::cout << "FragTrap destructor called" << std::endl; }
+
+//========= OVERLOAD ASSIGNMENT OPERATOR =========//
 
 FragTrap&	FragTrap::operator=( const FragTrap& sourceClass )
 {
@@ -41,5 +47,7 @@ FragTrap&	FragTrap::operator=( const FragTrap& sourceClass )
 	}
 	return *this;
 }
+
+//========= MEMBER FUNCTION =========//
 
 void	FragTrap::highFivesGuys( void ) { std::cout << "FragTrap " << this->getName() << " says: \"High fives guys!\"" << std::endl; }

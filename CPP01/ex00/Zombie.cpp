@@ -6,26 +6,20 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:06:59 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/26 14:47:49 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 20:53:51 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie( std::string name )
-{
-	this->_name = name;
-	return ;
-}
+//========= CONSTRUCTOR =========//
 
-Zombie::~Zombie( void )
-{
-	std::cout << this->_name << ": is out, goodbye!" << std::endl;
-	return ;
-}
+Zombie::Zombie( std::string name ) : _name(name) { }
 
-void	Zombie::announce( void )
-{
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	return ;
-}
+//========= DESTRUCTOR =========//
+
+Zombie::~Zombie( void ) { std::cout << this->_name << ": is out, goodbye!" << std::endl; }
+
+//========= MEMBER FUNCTION =========//
+
+void	Zombie::announce( void ) { std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl; }

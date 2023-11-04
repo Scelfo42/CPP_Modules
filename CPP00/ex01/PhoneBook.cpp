@@ -6,21 +6,21 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:35:59 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/19 17:27:58 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:10:54 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook( void ) : _countContacts(0), _replaceOldest(0)
-{
-	return ;
-}
+//========= CONSTRUCTOR =========//
 
-PhoneBook::~PhoneBook( void )
-{
-	return ;
-}
+PhoneBook::PhoneBook( void ) : _countContacts(0), _replaceOldest(0) { }
+
+//========= DESTRUCTOR =========//
+
+PhoneBook::~PhoneBook( void ) { }
+
+//========= MEMBER FUNCTION =========//
 
 void	PhoneBook::addContact( bool* ctrlD )
 {

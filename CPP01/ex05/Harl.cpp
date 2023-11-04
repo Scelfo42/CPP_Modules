@@ -6,35 +6,38 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:20:10 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/30 18:55:17 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:07:28 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-Harl::Harl( void )
-{
-	return ;
-}
+//========= CONSTRUCTOR =========//
 
-Harl::~Harl( void )
-{
-	return ;
-}
+Harl::Harl( void ) { }
+
+//========= DESTRUCTOR =========//
+
+Harl::~Harl( void ) { }
+
+//========= MEMBER FUNCTION =========//
 
 void	Harl::debug( void )
 {
-	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
+	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger.";
+	std::couy << "I really do!" << std::endl;
 }
 
 void	Harl::info( void )
 {
-	std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
+	std::cout << "I cannot believe adding extra bacon costs more money.";
+	std::cout << "You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
 }
 
 void	Harl::warning( void )
 {
-	std::cout << "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month." << std::endl;
+	std::cout << "I think I deserve to have some extra bacon for free.";
+	std::cout << "I've been coming for years whereas you started working here since last month." << std::endl;
 }
 
 void	Harl::error( void )

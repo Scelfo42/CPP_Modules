@@ -6,30 +6,24 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:32:37 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/27 15:42:10 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:03:31 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 
-Weapon::Weapon( std::string initialType )
-{
-	this->_type = initialType;
-	return ;
-}
+//========= CONSTRUCTOR =========//
 
-Weapon::~Weapon( void )
-{
-	return ;
-}
+Weapon::Weapon( std::string initialType ) : _type(initialType) { }
 
-std::string const & Weapon::getType( void ) const
-{
-	return this->_type;
-}
+//========= DESTRUCTOR =========//
 
-void	Weapon::setType( std::string type )
-{
-	this->_type = type;
-	return ;
-}
+Weapon::~Weapon( void ) { }
+
+//========= GETTER FUNCTION =========//
+
+std::string const & Weapon::getType( void ) const { return this->_type; }
+
+//========= SETTER FUNCTION =========//
+
+void	Weapon::setType( std::string type ) { this->_type = type; }

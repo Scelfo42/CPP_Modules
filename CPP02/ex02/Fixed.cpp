@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:12:14 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/03 14:46:46 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 20:42:45 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ std::ostream&	operator<<( std::ostream & stdOutStream, Fixed const & instance)
 	return stdOutStream;
 }
 
-//========= OPERATOR COMPARISON OVERLOAD =========//
+//========= OPERATOR ASSIGNMENT OVERLOAD =========//
 
 Fixed&	Fixed::operator=( Fixed const & modifiedInstance )
 {
@@ -56,6 +56,8 @@ Fixed&	Fixed::operator=( Fixed const & modifiedInstance )
 		this->_fixedNumber = modifiedInstance.getRawBits();
 	return *this;
 }
+
+//========= OPERATOR COMPARISON OVERLOAD =========//
 
 bool	Fixed::operator>( Fixed const & otherInstance ) const
 {

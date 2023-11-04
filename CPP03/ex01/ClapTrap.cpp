@@ -6,11 +6,13 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:20:36 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/03 18:37:41 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:18:15 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+//========= CONSTRUCTOR =========//
 
 ClapTrap::ClapTrap( void ) : _name("default"), _hitPoints(0), _energyPoints(0), _attackDamage(0)
 {
@@ -28,7 +30,11 @@ ClapTrap::ClapTrap( std::string name ) : _name(name), _hitPoints(10), _energyPoi
 	std::cout << "ClapTrap parametric constructor called" << std::endl;
 }
 
+//========= DESTRUCTOR =========//
+
 ClapTrap::~ClapTrap( void ) { std::cout << "ClapTrap destructor called" << std::endl; }
+
+//========= OVERLOAD ASSIGNMENT OPERATOR =========//
 
 ClapTrap&	ClapTrap::operator=( const ClapTrap& sourceClass )
 {
@@ -42,6 +48,8 @@ ClapTrap&	ClapTrap::operator=( const ClapTrap& sourceClass )
 	return (*this);
 }
 
+//========= SETTER FUNCTION =========//
+
 void	ClapTrap::setName( std::string name ) { this->_name = name; }
 
 void	ClapTrap::setHitPoints( unsigned int hitPoints ) { this->_hitPoints = hitPoints; }
@@ -50,6 +58,8 @@ void	ClapTrap::setEnergyPoints( unsigned int energyPoints ) { this->_energyPoint
 
 void	ClapTrap::setAttackDamage( unsigned int attackDamage ) { this->_attackDamage = attackDamage; }
 
+//========= GETTER FUNCTION =========//
+
 std::string	ClapTrap::getName( void ) const { return this->_name; }
 
 unsigned int	ClapTrap::getHitPoints( void ) const { return this->_hitPoints; }
@@ -57,6 +67,8 @@ unsigned int	ClapTrap::getHitPoints( void ) const { return this->_hitPoints; }
 unsigned int	ClapTrap::getEnergyPoints( void ) const { return this->_energyPoints; }
 
 unsigned int	ClapTrap::getAttackDamage( void ) const { return this->_attackDamage; }
+
+//========= MEMBER FUNCTION =========//
 
 void	ClapTrap::attack( const std::string& target )
 {

@@ -6,21 +6,21 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:53 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/10/19 17:18:59 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:12:03 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact( void )
-{
-	return ;
-}
+//========= CONSTRUCTOR =========//
 
-Contact::~Contact( void )
-{
-	return ;
-}
+Contact::Contact( void ) { }
+
+//========= DESTRUCTOR =========//
+
+Contact::~Contact( void ) { }
+
+//========= GETTER FUNCTION =========//
 
 static std::string	getValuePrint(std::string contactField, const char *infoField)
 {
@@ -43,6 +43,8 @@ std::string	Contact::getValue( int field, std::string (*print)(std::string, cons
 	return "";
 }
 
+//========= SETTER FUNCTION =========//
+
 std::string Contact::setValue( int field , std::string value )
 {
 	if (field == 0)
@@ -57,6 +59,8 @@ std::string Contact::setValue( int field , std::string value )
 		return (this->_darkestSecret.assign( value ));
 	return "";
 }
+
+//========= INPUT HANDLER FUNCTION =========//
 
 static std::string chooseField( int field, int (**funct)(int) )
 {
@@ -93,26 +97,7 @@ bool	checkInput( std::string input, int (*funct)(int) )
 	return true;
 }
 
-std::string	Contact::checkValue( int field )
-{
-	std::string	input;
-	int			(*funct)(int);
-
-	while (1)
-	{
-		std::cout << "Enter " << chooseField( field, &funct ) << ": ";
-		std::getline(std::cin, input);
-		if (std::cin.eof())
-			break ;
-		else if (!input.compare(""))
-			std::cerr << "Contact fields can't be empty" << std::endl;
-		else if (checkInput( input, funct ) )
-			return setValue( field, input );
-		else
-			std::cerr << "Input is incorrect" << std::endl;
-	}
-	return "";
-}
+//========= MEMBER FUNCTION =========//
 
 void	Contact::printInfo( int contactIndex )
 {
@@ -136,4 +121,25 @@ void	Contact::indexPrint( void )
 {
 	for (int i = 0; i < 5; i++)
 		std::cout << getValue(i, getValuePrint, true) << std::endl;
+}
+
+std::string	Contact::checkValue( int field )
+{
+	std::string	input;
+	int			(*funct)(int);
+
+	while (1)
+	{
+		std::cout << "Enter " << chooseField( field, &funct ) << ": ";
+		std::getline(std::cin, input);
+		if (std::cin.eof())
+			break ;
+		else if (!input.compare(""))
+			std::cerr << "Contact fields can't be empty" << std::endl;
+		else if (checkInput( input, funct ) )
+			return setValue( field, input );
+		else
+			std::cerr << "Input is incorrect" << std::endl;
+	}
+	return "";
 }

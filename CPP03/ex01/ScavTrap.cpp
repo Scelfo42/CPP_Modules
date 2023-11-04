@@ -6,11 +6,13 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:00:07 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/04 15:36:17 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:18:40 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+
+//========= CONSTRUCTOR =========//
 
 ScavTrap::ScavTrap( void ) : ClapTrap() { std::cout << "ScavTrap Default constructor called" << std::endl; }
 
@@ -28,7 +30,11 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap(name)
 	this->setAttackDamage(20);
 }
 
+//========= DESTRUCTOR =========//
+
 ScavTrap::~ScavTrap( void ) { std::cout << "ScavTrap destructor called" << std::endl; }
+
+//========= OVERLOAD ASSIGNMENT OPERATOR =========//
 
 ScavTrap&	ScavTrap::operator=( const ScavTrap& sourceClass )
 {
@@ -42,6 +48,8 @@ ScavTrap&	ScavTrap::operator=( const ScavTrap& sourceClass )
 	std::cout << "ScavTrap assignation operator called" << std::endl;
 	return (*this);
 }
+
+//========= MEMBER FUNCTION =========//
 
 void	ScavTrap::attack( const std::string& target )
 {
