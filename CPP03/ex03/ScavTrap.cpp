@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:00:07 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/04 15:36:17 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 16:33:23 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap( void ) : ClapTrap() { std::cout << "ScavTrap Default constructor called" << std::endl; }
 
-ScavTrap::ScavTrap( const ScavTrap& sourceClass ) : ClapTrap(sourceClass)
+ScavTrap::ScavTrap( const ScavTrap& sourceClass ) : ClapTrap(sourceClass) 
 {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 	*this = sourceClass;

@@ -6,40 +6,20 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:51:52 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/04 15:36:43 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/04 16:10:12 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int	main( void )
 {
-	ScavTrap	scavTrap("John");
-	ScavTrap	copyScavTrap(scavTrap);
-	ScavTrap	defaultScavTrap;
+	FragTrap	frog("Frog");
 
-	std::cout << std::endl;
-
-	scavTrap.attack("Bob");
-	std::cout << std::endl;
-	
-	scavTrap.setAttackDamage(42);
-	scavTrap.attack("Bob");
-	std::cout << std::endl;
-
-	scavTrap.takeDamage(5);
-	scavTrap.beRepaired(100);
-	std::cout << std::endl;
-	
-	scavTrap.takeDamage(1000);
-	std::cout << std::endl;
-
-	scavTrap.beRepaired(100);
-	scavTrap.attack("Bob");
-	std::cout << std::endl;
-	
-	scavTrap.guardGate();
-	std::cout << std::endl;
+	frog.attack("a tree");
+	frog.takeDamage(5);
+	frog.beRepaired(5);
+	frog.highFivesGuys();
 
 	return 0;
 }
