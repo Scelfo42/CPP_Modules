@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:00:23 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/06 13:03:39 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/09 11:50:40 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define ANIMAL_HPP
 
 #include <iostream>
+#include <typeinfo>
 
 class Animal
 {
