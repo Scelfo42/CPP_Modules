@@ -4,7 +4,13 @@ CC      :=	c++
 
 FLAGS   :=	-g -Wall -Wextra -Werror -Wshadow -std=c++98
 
-SRCS	:=	main.cpp
+SRCS	:=	main.cpp			\
+			Ice.cpp				\
+			Cure.cpp			\
+			AMateria.cpp		\
+			allocTry.cpp		\
+			Character.cpp		\
+			MateriaSource.cpp
 			
 OBJS     := $(SRCS:.cpp=.o)
 

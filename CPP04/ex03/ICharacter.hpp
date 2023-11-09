@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:53:59 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/08 14:00:31 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:33:57 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
 
-#include "AMateria.hpp"
+#include <iostream>
+
+class AMateria;
 
 class ICharacter
 {

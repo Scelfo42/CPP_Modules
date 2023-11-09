@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 14:02:34 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 16:39:23 by cscelfo          ###   ########.fr       */
+/*   Created: 2023/11/09 13:20:52 by cscelfo           #+#    #+#             */
+/*   Updated: 2023/11/09 13:23:05 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef MATERIASOURCE_HPP
-# define MATERIASOURCE_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
-#include "IMateriaSource.hpp"
 #include "AMateria.hpp"
 
-class MateriaSource : public IMateriaSource
+class Cure : public AMateria
 {
-	private:
-		AMateria*	_materia[4];
 	public:
-		MateriaSource( void );
-		MateriaSource( const MateriaSource& sourceClass );
-		~MateriaSource( void );
+		Cure( void );
+		Cure( const Cure& sourceClass );
+		~Cure( void );
 
-		MateriaSource&	operator=( const MateriaSource& sourceClass );
+		Cure&	operator=( const Cure& sourceClass );
 
-		virtual	void		learnMateria( AMateria* );
-		virtual AMateria*	createMateria( const std::string& type );
+		virtual AMateria*	clone( void ) const;
+		virtual void		use( ICharacter& target );
 };
 
 #endif

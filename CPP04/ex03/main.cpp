@@ -6,13 +6,14 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:46:48 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/08 14:03:17 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:36:06 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
-#include "Character.hpp"
 #include "MateriaSource.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "Character.hpp"
 
 int main( void )
 {

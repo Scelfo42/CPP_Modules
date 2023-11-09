@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 14:02:34 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 16:39:23 by cscelfo          ###   ########.fr       */
+/*   Created: 2023/11/09 11:14:12 by cscelfo           #+#    #+#             */
+/*   Updated: 2023/11/09 11:16:23 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef MATERIASOURCE_HPP
-# define MATERIASOURCE_HPP
+#ifndef ICE_HPP
+# define ICE_HPP
 
-#include "IMateriaSource.hpp"
 #include "AMateria.hpp"
 
-class MateriaSource : public IMateriaSource
+class Ice : public AMateria
 {
-	private:
-		AMateria*	_materia[4];
 	public:
-		MateriaSource( void );
-		MateriaSource( const MateriaSource& sourceClass );
-		~MateriaSource( void );
+		Ice( void );
+		Ice( const Ice& sourceClass );
+		~Ice( void );
 
-		MateriaSource&	operator=( const MateriaSource& sourceClass );
+		Ice&	operator=( const Ice& sourceClass );
 
-		virtual	void		learnMateria( AMateria* );
-		virtual AMateria*	createMateria( const std::string& type );
+		virtual AMateria*	clone( void ) const;
+		virtual void		use( ICharacter& target );
 };
 
 #endif
