@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:40:03 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 16:49:30 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:58:36 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ Character::Character( std::string name ) : _name(name)
 		this->_materiaSlots[i] = NULL;
 }
 
-Character::Character( const Character& sourceClass )
-{
-	*this = sourceClass;
-}
+Character::Character( const Character& sourceClass ) { *this = sourceClass; }
 
 Character::~Character( void )
 {

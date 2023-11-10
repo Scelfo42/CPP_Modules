@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:58:18 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 14:50:32 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:58:11 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ AMateria::~AMateria( void ) { }
 
 AMateria&	AMateria::operator=( const AMateria& sourceClass )
 {
-	(void)sourceClass;
+	if (this != &sourceClass)
+		;
 	return *this;
 }
 

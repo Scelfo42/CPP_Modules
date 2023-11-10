@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:58:05 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 12:05:33 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:43:02 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ int main( void )
 	const WrongAnimal* wrongMeta = new WrongAnimal();
 	const WrongAnimal* wrongI = new WrongCat();
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	std::cout << wrongI->getType() << " " << std::endl;
-	i->makeSound();
+	std::cout << std::endl << j->getType() << " " << std::endl;
 	j->makeSound();
+	std::cout << i->getType() << " " << std::endl;
+	i->makeSound();
+	std::cout << meta->getType() << " " << std::endl;
 	meta->makeSound();
+	std::cout << wrongI->getType() << " " << std::endl;
 	wrongI->makeSound();
+	std::cout << wrongMeta->getType() << " " << std::endl;
 	wrongMeta->makeSound();
+	std::cout << std::endl;
 
 	delete i;
 	delete j;

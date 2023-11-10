@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:31:00 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/08 11:55:40 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:45:28 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Brain&	Brain::operator=( const Brain& sourceClass )
 	if (this != &sourceClass)
 	{
 		for (int i = 0; i < 100; i++)
-			this->setIdea(i, sourceClass.getIdea(i));
+			this->_ideas[i] = sourceClass._ideas[i];
 	}
 	return *this;
 }

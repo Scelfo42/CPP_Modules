@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:16:32 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 14:50:48 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:59:29 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 Ice::Ice( void ) : AMateria("ice") { }
 
-Ice::Ice( const Ice& sourceClass ) : AMateria(sourceClass) { }
+Ice::Ice( const Ice& sourceClass ) : AMateria(sourceClass) { this->_type = "ice"; *this = sourceClass; }
 
 Ice::~Ice( void ) { }
 
 Ice&	Ice::operator=( const Ice& sourceClass )
 {
 	if (this != &sourceClass)
-		AMateria::operator=(sourceClass);
+		;
 	return *this;
 }
 

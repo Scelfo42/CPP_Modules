@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:23:21 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 14:51:11 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:59:49 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 Cure::Cure( void ) : AMateria("cure") { }
 
-Cure::Cure( const Cure& sourceClass ) : AMateria(sourceClass) { }
+Cure::Cure( const Cure& sourceClass ) : AMateria(sourceClass) { this->_type = "cure"; *this = sourceClass; }
 
 Cure::~Cure( void ) { }
 
 Cure&	Cure::operator=( const Cure& sourceClass )
 {
 	if (this != &sourceClass)
-		AMateria::operator=(sourceClass);
+		;
 	return *this;
 }
 

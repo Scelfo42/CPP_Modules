@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:41:51 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/08 11:56:34 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:56:53 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,19 @@ Dog::Dog( void ) : Animal("Dog")
 	}
 }
 
-Dog::Dog( const Dog& sourceClass ) : Animal(sourceClass) { std::cout << "Dog copy constructor called" << std::endl; }
+Dog::Dog( const Dog& sourceClass ) : Animal(sourceClass)
+{
+	std::cout << "Dog copy constructor called" << std::endl;
+	this->_type = "Dog";
+	try {
+		this->_brain = new Brain();
+	}
+	catch(const std::bad_alloc& err) {
+		std::cerr << "Caught bad_alloc: " << err.what() << '\n';
+		this->_brain = NULL;
+	}
+	*this = sourceClass;
+}
 
 //========= DESTRUCTOR =========//
 
@@ -41,7 +53,8 @@ Dog::~Dog( void )
 Dog&	Dog::operator=( const Dog& sourceClass )
 {
 	std::cout << "Dog assignment operator called" << std::endl;
-	Animal::operator=(sourceClass);
+	if (this != &sourceClass)
+		*this->_brain = *sourceClass._brain;
 	return *this;
 }
 

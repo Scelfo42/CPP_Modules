@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:32:11 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/08 12:15:41 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:56:30 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,19 @@ Cat::Cat( void ) : AAnimal("Cat")
 	}
 }
 
-Cat::Cat( const Cat& sourceClass ) : AAnimal(sourceClass) { std::cout << "Cat copy constructor called" << std::endl; }
+Cat::Cat( const Cat& sourceClass ) : AAnimal(sourceClass)
+{
+	std::cout << "Cat copy constructor called" << std::endl;
+	this->_type = "Cat";
+	try {
+		this->_brain = new Brain();
+	}
+	catch(const std::bad_alloc& err) {
+		std::cerr << "Caught bad_alloc: " << err.what() << '\n';
+		this->_brain = NULL;
+	}
+	*this = sourceClass;
+}
 
 //========= DESTRUCTOR =========//
 
@@ -41,7 +53,8 @@ Cat::~Cat( void )
 Cat&	Cat::operator=( const Cat& sourceClass )
 {
 	std::cout << "Cat assignment operator called" << std::endl;
-	AAnimal::operator=(sourceClass);
+	if (this != &sourceClass)
+		*this->_brain = *sourceClass._brain;
 	return *this;
 }
 

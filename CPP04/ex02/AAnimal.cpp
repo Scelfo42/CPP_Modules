@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:18:33 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/08 12:17:12 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:54:31 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ AAnimal&	AAnimal::operator=( const AAnimal& sourceClass )
 {
 	std::cout << "AAnimal assignment operator called" << std::endl;
 	if (this != &sourceClass)
-		this->setType(sourceClass.getType());
+		;
 	return *this;
 }
 
