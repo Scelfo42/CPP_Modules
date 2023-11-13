@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:57:27 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 16:40:56 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/13 17:17:19 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Character : public ICharacter
 	private:
 		AMateria*	_materiaSlots[4];
 		std::string	_name;
+		AMateria*	_floor[4];
 	public:
 		Character( void );
 		Character( std::string name );

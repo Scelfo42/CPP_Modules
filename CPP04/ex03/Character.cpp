@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:40:03 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/10 15:58:36 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/13 17:17:54 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 Character::Character( void ) : _name("default")
 {
 	for (int i = 0; i < 4; i++)
+	{
 		this->_materiaSlots[i] = NULL;
+		this->_floor[i] = NULL;
+	}
 }
 
 Character::Character( std::string name ) : _name(name)
 {
 	for (int i = 0; i < 4; i++)
+	{
 		this->_materiaSlots[i] = NULL;
+		this->_floor[i] = NULL;
+	}
 }
 
 Character::Character( const Character& sourceClass ) { *this = sourceClass; }
@@ -32,6 +38,8 @@ Character::~Character( void )
 	{
 		if (this->_materiaSlots[i])
 			delete this->_materiaSlots[i];
+		if (this->_floor[i])
+			delete this->_floor[i];
 	}
 }
 
@@ -65,7 +73,10 @@ void	Character::equip( AMateria *m )
 void	Character::unequip( int idx )
 {
 	if (idx >= 0 && idx <= 3)
+	{
+		this->_floor[idx] = this->_materiaSlots[idx];
 		this->_materiaSlots[idx] = NULL;
+	}
 }
 
 void	Character::use( int idx, ICharacter& target )

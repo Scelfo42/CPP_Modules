@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:46:48 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/09 16:36:06 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/13 17:18:09 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ int main( void )
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 
+	me->unequip(1);
+
 	ICharacter* bob = new Character("bob");
 
 	me->use(0, *bob);
 	me->use(1, *bob);
+	
 
 	delete bob;
 	delete me;
