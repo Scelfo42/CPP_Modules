@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:44:04 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/16 16:25:04 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/16 18:03:50 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,13 @@ std::ostream&   operator<<( std::ostream& stdOutStream, const Bureaucrat& instan
 {
     stdOutStream << instance.getName() << ", bureaucrat grade " << instance.getGrade() << "." << std::endl;
     return stdOutStream;
+}
+
+void    Bureaucrat::signForm( const Form& instance )
+{
+    if (instance.getSigned())
+        std::cout << this->_name << " signed " << instance.getName() << std::endl;
+    else
+        std::cout << this->_name << " couldn't sign " << instance.getName() << " because " << instance.getGradeToSign() << " is invalid" << std::endl;
+    
 }

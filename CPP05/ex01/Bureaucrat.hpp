@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:44:17 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/16 15:59:18 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/16 17:16:26 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -38,6 +39,7 @@ class Bureaucrat
         void        incrementGrade( int incrementValue );
         void        decrementGrade( int decrementValue );
 
+        void        signForm( const Form& );
         
         class GradeTooLowException : public std::exception
         {
