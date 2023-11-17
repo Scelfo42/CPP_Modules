@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:09:55 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/16 18:32:09 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/17 10:12:08 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
+#include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
     private:
-        std::string  target;
+        std::string _target;
     public:
         ShrubberyCreationForm( void );
         ShrubberyCreationForm( std::string );
@@ -29,7 +30,7 @@ class ShrubberyCreationForm : public AForm
 
         ShrubberyCreationForm&  operator=( const ShrubberyCreationForm& );
 
-        virtual void    execute( const Bureaucrat& executor ) const;
+        virtual void    execute( const Bureaucrat& ) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:44:17 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/16 18:17:40 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/17 11:57:45 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ class Bureaucrat
         void        incrementGrade( int incrementValue );
         void        decrementGrade( int decrementValue );
 
-        void        signForm( const AForm& );
+        void        signForm( AForm& );
         
         class GradeTooLowException : public std::exception
         {
             public:
                 virtual const char* what() const throw()
                 {
-                    return "Grade too low";
+                    return "Bureaucrat: grade too low";
                 }
         };
         
@@ -55,9 +55,11 @@ class Bureaucrat
             public:
                 virtual const char* what() const throw()
                 {
-                    return "Grade too high";
+                    return "Bureaucrat: grade too high";
                 }
         };
+
+        void    executeForm( const AForm& form ) const;
 };
 
 std::ostream& operator<<( std::ostream& stdOutStream, const Bureaucrat& instance);

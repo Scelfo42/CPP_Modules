@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:10:17 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/16 18:32:16 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/17 10:10:46 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class RobotomyRequestForm : public AForm
 {
     private:
-        std::string  target;
+        std::string _target;
     public:
         RobotomyRequestForm( void );
         RobotomyRequestForm( std::string );

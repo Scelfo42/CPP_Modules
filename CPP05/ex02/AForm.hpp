@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:14:37 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/16 18:31:43 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/17 12:13:45 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include <exception>
 #include <iostream>
+#include <cstdlib>
 
 class Bureaucrat;
 
@@ -47,7 +48,7 @@ class AForm
             public:
                 virtual const char* what() const throw()
                 {
-                    return "Form: Too low grade";
+                    return "Invalid Form: grade too low";
                 }
         };
 
@@ -56,11 +57,21 @@ class AForm
             public:
                 virtual const char* what() const throw()
                 {
-                    return "Form: Too high grade";
+                    return "Invalid Form: grade too high";
                 }
         };
 
-        virtual void    execute( const Bureaucrat& executor ) const = 0;
+        class FormNotSignedException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw()
+                {
+                    return "Form: not signed";
+                }
+        };
+
+        virtual void    execute( const Bureaucrat& ) const = 0;
+        bool            checkExecute( const Bureaucrat& ) const;
 };
 
 std::ostream&   operator<<( std::ostream&, const AForm& );

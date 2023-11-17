@@ -1,12 +1,19 @@
-NAME    :=  
+NAME    :=  ExecuteForm
 
 CC      :=	c++
 
 FLAGS   :=	-g -Wall -Wextra -Werror -std=c++98
 
-SRCS	:=	main.cpp			\
+SRCS	:=	main.cpp					\
+			Bureaucrat.cpp				\
+			AForm.cpp					\
+			ShrubberyCreationForm.cpp	\
+			RobotomyRequestForm.cpp		\
+			PresidentialPardonForm.cpp
 
 OBJS     := $(SRCS:.cpp=.o)
+
+OUTFILE  := *_shrubbery
 
 # COLORS ================================================================= #
 
@@ -37,7 +44,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f $(INFILE)
+	@rm -f $(OUTFILE)
 	@echo "$(RED)...and $(CYAN)${NAME} $(RED)has been removed"
 
 re: fclean all

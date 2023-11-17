@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:10:43 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/16 18:32:21 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/17 10:10:52 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class PresidentialPardonForm : public AForm
 {
     private:
-        std::string  target;
+        std::string _target;
     public:
         PresidentialPardonForm( void );
         PresidentialPardonForm( std::string );

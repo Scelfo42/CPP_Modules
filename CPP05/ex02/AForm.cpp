@@ -17,12 +17,12 @@ static bool checkGrade( int grade1, int grade2 )
 {
     if (grade1 < 1 || grade2 < 1)
     {
-        throw Bureaucrat::GradeTooHighException();
+        throw AForm::GradeTooHighException();
         return true;
     }
     else if (grade2 > 150 || grade2 > 150)
     {
-        throw Bureaucrat::GradeTooLowException();
+        throw AForm::GradeTooLowException();
         return true;
     }
     return false;
@@ -78,13 +78,17 @@ int AForm::getGradeToSign( void ) const { return this->_gradeToSign; }
 
 int AForm::getGradeToExecute( void ) const { return this->_gradeToExecute; }
 
-void    AForm::beSigned( const Bureaucrat& instance )
+void    AForm::beSigned( const Bureaucrat& bureaucrat )
 {
     try
     {
         if (!checkGrade(this->_gradeToSign, 1))
-            if (instance.getGrade() <= this->_gradeToSign)
+        {
+            if (bureaucrat.getGrade() <= this->_gradeToSign)
                 this->_signed = true;
+            else
+                throw Bureaucrat::GradeTooLowException();
+        }
     }
     catch(const std::exception& error)
     {
@@ -99,4 +103,25 @@ std::ostream&   operator<<( std::ostream& stdOut, const AForm& instance )
     stdOut << "gradeToSign: " << instance.getGradeToSign() << std::endl;
     stdOut << "gradeToExecute: " << instance.getGradeToExecute() << std::endl;
     return stdOut;
+}
+
+bool    AForm::checkExecute( const Bureaucrat& bureaucrat ) const
+{
+    try
+    {
+        if (this->_signed)
+        {
+            if (bureaucrat.getGrade() <= this->_gradeToExecute)
+                return true;
+            else
+                throw Bureaucrat::GradeTooLowException();
+        }
+        else
+            throw AForm::FormNotSignedException();
+    }
+    catch(const std::exception& error)
+    {
+        std::cerr << error.what() << std::endl;
+    }
+    return false;
 }
