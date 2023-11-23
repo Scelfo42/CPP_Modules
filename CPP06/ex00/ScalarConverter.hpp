@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:05:41 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/22 16:02:11 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:39:01 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class ScalarConverter
 
         ScalarConverter&    operator=( const ScalarConverter& );
     public:
-        static void convert( std::string );
+        static void convert( const std::string& );
 
         class ImpossibleException : public std::exception
         {
@@ -56,6 +56,11 @@ class ScalarConverter
         };
 };
 
-char    convertChar( std::string );
+bool    isChar( const std::string&, const size_t& );
+bool    isSpecial( const std::string& );
+bool    isInt( const std::string&, const size_t& );
+bool    isDouble( const std::string&, const size_t&, const size_t& );
+bool    isFloat( const std::string&, const size_t&, const size_t& );
+char    convertChar( const std::string&, const int& );
 
 #endif
