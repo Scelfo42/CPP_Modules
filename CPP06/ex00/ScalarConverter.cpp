@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:05:17 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/23 16:43:18 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/24 14:34:16 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ ScalarConverter&    ScalarConverter::operator=( const ScalarConverter& srcClass 
     return *this;
 }
 
+static void doSpecial( const std::string& input )
+{
+    std::string special = input;
+
+    std::cout << "char: impossible" << '\n';
+    std::cout << "int: impossible" << '\n';
+    if (special == "inf" || special == "+inf" || special == "-inf" || special == "nan")
+    {
+        std::cout << "float: " << special << "f" << '\n';
+        std::cout << "double: " << special << std::endl;
+    }
+    else
+    {
+        std::cout << "float: " << special << '\n';
+        std::cout << "double: " << special.erase(special.length() - 1) << std::endl;
+    }
+}
+
 static int  selectType( const std::string& input)
 {
     size_t  len = input.length();
@@ -36,14 +54,14 @@ static int  selectType( const std::string& input)
 
     if (dotFinder == std::string::npos)
     {
-        if (isChar(input, len)) //control if input is a char
+        if (isSpecial(input)) //control if input is special
             return 1;
-        else if (isSpecial(input)) //control if input is special
+        else if (isChar(input, len)) //control if input is a char
             return 2;
         else if (isInt(input, len)) //control if input is an int
             return 3;
     }
-    else
+    else if (len > 0)
     {
         if (isDouble(input, len, dotFinder)) //control if input is a double
            return 4;
@@ -57,26 +75,33 @@ void    ScalarConverter::convert( const std::string& input )
 {
     int type = selectType(input);
 
-    std::cout << "type: " << type << std::endl;
-    
-    if (type)
+    try
     {
-        if (type == 2)
-            doSpecial(input);
-        else
+        switch (type)
         {
-            std::cout << "char: ";
-            try
-            {
-                ScalarConverter::_char = convertChar(input, type);
-                std::cout << "'" << ScalarConverter::_char << "'" << std::endl;
-            }
-            catch(const std::exception& e)
-            {
-                std::cerr << e.what() << '\n';
-            }
+            case 0:
+                throw ScalarConverter::InputErrorException();
+                break ;
+            case 1:
+                doSpecial(input);
+                break ;
+            case 2:
+                convertChar(input, true);
+                break ;
+            case 3:
+                convertInt(input, true);
+                break ;
+            case 4:
+                convertDouble(input);
+                break ;
+            case 5:
+                convertFloat(input, true);
+            default:
+                break ;
         }
     }
-    else
-        std::cerr << "Parse error: Wrong input!" << std::endl;
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }

@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:29:06 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/23 16:39:48 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:23:52 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ bool    isInt( const std::string& input, const size_t& len)
         if (!isdigit(input[i]) || (!flag && i > 10) || (flag && i > 11))
             return false;
     }
+    if (std::atol(input.c_str()) > MAX_INT || std::atol(input.c_str()) < MIN_INT)
+        return false;
     return true;
 }
 
