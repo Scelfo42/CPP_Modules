@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:18:29 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/29 15:39:03 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/30 10:58:24 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class B : public Base
 {
 	public:
 		B( void );
-		~B( void );
+		virtual ~B( void );
 };
 
 #endif

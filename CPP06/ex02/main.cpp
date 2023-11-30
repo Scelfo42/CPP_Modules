@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:00:58 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/29 16:22:46 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/30 10:57:05 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ int	main( void )
 	identify(base3);
 	std::cout << "By reference: ";
 	identify(*base3);
+
+	delete base1;
+	delete base2;
+	delete base3;
 
 	return 0;
 }
