@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:59:48 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/29 17:03:25 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/11/30 11:31:39 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ void	identify( Base* p )
 
 void	identify( Base& p )
 {
-	tryIdentify<A>(p, "A");
-	tryIdentify<B>(p, "B");
-	tryIdentify<C>(p, "C");
+	tryIdentify<A, B, C>(p, "ABC");
 }
