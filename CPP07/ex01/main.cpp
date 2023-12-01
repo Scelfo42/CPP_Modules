@@ -6,21 +6,57 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:44:44 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/11/30 18:11:25 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:03:08 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 
-int	main( void )
+class Awesome
 {
-	int		arrayInt[5] = { 0, 1, 2, 3, 4 };
-	char	arrayChar[5] = { 'a', 'b', 'c', 'd', 'e' };
-	float	arrayFloat[5] = { 0.1, 0.2, 0.3, 0.4, 0.5 };
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
 
-	iter(arrayInt, 5, function);
-	iter(arrayChar, 5, function);
-	iter(arrayFloat, 5, function);
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+{
+  o << rhs.get();
+  return o;
+}
 
-	return (0);
+template< typename T >
+void print( T& x )
+{
+  std::cout << x << std::endl;
+  return;
+}
+
+int main( void )
+{
+	int				tab[] = { 0, 1, 2, 3, 4 };
+	unsigned int	tab2[] = { 5, 6, 7, 8, 9 };
+	Awesome			tab3[5];
+
+	std::cout << "-int array:" << std::endl;
+	iter( tab, 5, print<int> );
+	std::cout << std::endl;
+	std::cout << "-const int:" << std::endl;
+	iter( tab, 5, print<const int> );
+	std::cout << std::endl;
+	std::cout << "-unsigned int array:" << std::endl;
+	iter( tab2, 5, print<unsigned int> );
+	std::cout << std::endl;
+	std::cout << "-const unsigned int:" << std::endl;
+	iter( tab2, 5, print<const unsigned int> );
+	std::cout << std::endl;
+	std::cout << "-Awesome array:" << std::endl;
+	iter( tab3, 5, print<Awesome> );
+	std::cout << std::endl;
+	std::cout << "-const Awesome:" << std::endl;
+	iter( tab3, 5, print<const Awesome> );
+
+  return 0;
 }
