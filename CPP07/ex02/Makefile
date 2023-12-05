@@ -8,6 +8,7 @@ SRCS	:=	main.cpp
 
 OBJS     := $(SRCS:.cpp=.o)
 
+
 # COLORS ================================================================= #
 
 RED = \033[0;91m
@@ -25,7 +26,7 @@ WHITE = \033[0;97m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) $(OBJS2) -o $(NAME)
 	@echo "$(YELLOW)- Program Name: $(WHITE)${NAME}"
 	@echo "$(YELLOW)- Compiler: $(WHITE)${CC}"
 	@echo "$(YELLOW)- Flags: $(WHITE)${FLAGS}"
