@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 10
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
@@ -51,14 +51,11 @@ int main(int, char**)
     try
     {
         numbers[MAX_VAL] = 0;
-		tmp[MAX_VAL] = 0;
-		test[MAX_VAL] = 0;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();

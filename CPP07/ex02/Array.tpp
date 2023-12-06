@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:33:31 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/05 12:11:43 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/06 15:46:22 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Array<T>::Array( void ) : Array(0) { }
 template <typename T>
 Array<T>::Array(unsigned int n)
 {
-	this->_array = new T[n + 1];
+	this->_array = new T[n];
 	this->_size = n;
 }
 
@@ -37,7 +37,7 @@ Array<T>&	Array<T>::operator=( const Array& src )
 {
 	if (this != &src)
 	{
-		this->_array = new T[src._size + 1];
+		this->_array = new T[src._size];
 		this->_size = src._size;
 		for (unsigned int i = 0; i < src._size; i++)
 			this->_array[i] = src._array[i];
@@ -48,10 +48,8 @@ Array<T>&	Array<T>::operator=( const Array& src )
 template<typename T>
 T&	Array<T>::operator[]( const int index )
 {
-	if (index < 0 || index > static_cast<int>(this->_size))
-	{
+	if (index < 0 || index > static_cast<int>(this->_size) - 1)
 		throw Array::OutOfRangeException();
-	}
 	return this->_array[index];
 }
 
