@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:07:24 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/05 12:11:25 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/06 15:29:47 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class Array
 
 		Array<T>&	operator=( const Array& );
 		T&	operator[]( const int );
-		unsigned int getSize( void ) const;
+		unsigned int size( void ) const;
 
 		class OutOfRangeException : public std::exception
 		{
