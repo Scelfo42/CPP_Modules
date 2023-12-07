@@ -15,14 +15,14 @@
 template <typename T>
 Array<T>::Array( void )
 {
-	this->_array = new T[0];
+	this->_array = new T[0]();
 	this->_size = 0;
 }
 
 template <typename T>
 Array<T>::Array(unsigned int n)
 {
-	this->_array = new T[n];
+	this->_array = new T[n]();
 	this->_size = n;
 }
 
@@ -47,7 +47,7 @@ Array<T>&	Array<T>::operator=( const Array& src )
 	{
 		if (this->_array)
 			delete [] this->_array;
-		this->_array = new T[src._size];
+		this->_array = new T[src._size]();
 		this->_size = src._size;
 		for (unsigned int i = 0; i < src._size; i++)
 			this->_array[i] = src._array[i];
