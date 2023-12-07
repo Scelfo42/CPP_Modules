@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:17:14 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/07 18:19:02 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/07 19:34:04 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Span::Span( void )
 			break ;
 		else
 		{
-			for (int i = 0; i < input.size(); i++)
+			for (size_t i = 0; i < input.size(); i++)
 			{
 				if (!isdigit(input[i]))
 				{
@@ -77,13 +77,52 @@ void	Span::addNumber( int number )
 	_container.push_back(number);	
 }
 
-static bool isContainerOrdered(std::vector<int>& container)
+static bool isContainerOrdered( std::vector<int>::iterator it, const std::vector<int>::iterator& it_end )
 {
-	return std::is_sorted(container.begin(), container.end());
+	for (; it != it_end - 1; it++)
+	{
+		if (*it > *(it + 1))
+			return false;
+	}
+	return true;
+}
+
+static int longest( std::vector<int>& container )
+{
+	return container[container.size() - 1] - container[0];
+}
+
+static int shortest( std::vector<int>::iterator& it, const std::vector<int>::iterator& it_end )
+{
+	int shortest = std::numeric_limits<int>::max();
+	int relativeDiff = 0;
+
+	for (; it != it_end - 1; it++)
+	{
+		relativeDiff = *(it + 1) - *it;
+		if (relativeDiff < shortest)
+			shortest = relativeDiff;
+	}
+
+	return shortest;
+}
+
+static int calculateSpan(std::vector<int>& container, const int& request)
+{
+	std::vector<int>::iterator it = container.begin();
+	std::vector<int>::iterator it_end = container.end();
+
+	if (!isContainerOrdered(it, it_end))
+		std::sort(it, it_end);
+	return (request == 0 ? shortest(it, it_end) : longest(container));
 }
 
 int	Span::shortestSpan( void )
 {
-	if (isContainerOrdered(_container))
-		return _container[1] - _container[0];
+	return calculateSpan(_container, 0);
+}
+
+int	Span::longestSpan( void )
+{
+	return calculateSpan(_container, 1);
 }
