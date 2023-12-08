@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:16:01 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/07 18:09:40 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/08 19:10:25 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 #ifndef SPAN_HPP
 # define SPAN_HPP
+
+# define INT_MIN std::numeric_limits<int>::min()
+# define INT_MAX std::numeric_limits<int>::max()
+# define LONG_MAX std::numeric_limits<long int>::max()
 
 # include <iostream>
 # include <limits>
@@ -36,16 +40,39 @@ class Span
 
 		Span&	operator=( const Span& src );
 
-		void	addNumber( int number );
-		int		shortestSpan( void );
-		int		longestSpan( void );
+		void				addNumber( const int& );
+		void				addNumber( const long int& );
+		void				addNumber( const long int&, const size_t& );
+		void				addNumber( const size_t&, std::string );
+		long int			shortestSpan( void );
+		long int			longestSpan( void );
+		std::vector<int>&	getContainer( void );
+		const unsigned int&	getMaxSize( void ) const;
 
 		class ContainerFullException : public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return "The container is full.";
+					return "Adding that number would exceed the container's size.";
+				}
+		};
+
+		class ContainerFewElementsException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return "The container has too few elements to find a span.";
+				}
+		};
+
+		class InvalidNumberException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return "The number isn't an integer so it can't be added to the container.";
 				}
 		};
 };

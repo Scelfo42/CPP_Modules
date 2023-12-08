@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:17:14 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/07 19:34:04 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/08 19:10:56 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,44 +62,19 @@ Span&	Span::operator=( const Span& src )
 	return *this;
 }
 
-void	Span::addNumber( int number )
+static long int longest( std::vector<int>& container )
 {
-	try
-	{
-		if (_container.size() == _maxSize)
-			throw Span::ContainerFullException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-		return ;
-	}
-	_container.push_back(number);	
+	return static_cast<long int>(container[container.size() - 1]) - static_cast<long int>(container[0]);
 }
 
-static bool isContainerOrdered( std::vector<int>::iterator it, const std::vector<int>::iterator& it_end )
+static long int shortest( std::vector<int>::const_iterator& it, const std::vector<int>::const_iterator& itEnd )
 {
-	for (; it != it_end - 1; it++)
+	long int shortest = LONG_MAX;
+	long int relativeDiff = 0;
+
+	for (; it != itEnd - 1; it++)
 	{
-		if (*it > *(it + 1))
-			return false;
-	}
-	return true;
-}
-
-static int longest( std::vector<int>& container )
-{
-	return container[container.size() - 1] - container[0];
-}
-
-static int shortest( std::vector<int>::iterator& it, const std::vector<int>::iterator& it_end )
-{
-	int shortest = std::numeric_limits<int>::max();
-	int relativeDiff = 0;
-
-	for (; it != it_end - 1; it++)
-	{
-		relativeDiff = *(it + 1) - *it;
+		relativeDiff = static_cast<long int>(*(it + 1)) - static_cast<long int>(*it);
 		if (relativeDiff < shortest)
 			shortest = relativeDiff;
 	}
@@ -107,22 +82,81 @@ static int shortest( std::vector<int>::iterator& it, const std::vector<int>::ite
 	return shortest;
 }
 
-static int calculateSpan(std::vector<int>& container, const int& request)
+static bool isContainerOrdered( std::vector<int>::const_iterator it, const std::vector<int>::const_iterator& itEnd )
 {
-	std::vector<int>::iterator it = container.begin();
-	std::vector<int>::iterator it_end = container.end();
-
-	if (!isContainerOrdered(it, it_end))
-		std::sort(it, it_end);
-	return (request == 0 ? shortest(it, it_end) : longest(container));
+	for (; it != itEnd - 1; it++)
+	{
+		if (*it > *(it + 1))
+			return false;
+	}
+	return true;
 }
 
-int	Span::shortestSpan( void )
+static void addNumberHelper( Span& instance, const int& number, const size_t& count)
 {
+	std::vector<int>&	container = instance.getContainer();
+	const unsigned int		maxSize = instance.getMaxSize();
+
+	if (container.size() + count > maxSize)
+		throw Span::ContainerFullException();
+	for (size_t i = 0; i < count; i++)
+		container.push_back(number);
+}
+
+void	Span::addNumber( const int& number ) { addNumberHelper(*this, number, 1); }
+
+void	Span::addNumber( const long int& ) { throw Span::InvalidNumberException(); }
+
+void	Span::addNumber( const long int& number, const size_t& count )
+{
+	if (count == 0)
+		return ;
+	else if (number < INT_MIN || number > INT_MAX)
+		throw Span::InvalidNumberException();
+	const int castedNumber = static_cast<int>(number);
+	addNumberHelper(*this, castedNumber, count);
+}
+
+void	Span::addNumber( const size_t& count, std::string str )
+{
+	if (count == 0 || str.compare("random"))
+		return ;
+	else if (this->_container.size() + count > this->_maxSize)
+		throw Span::ContainerFullException();
+	srand(time(NULL));
+	for (size_t i = 0; i < count; i++)
+	{
+		int random = rand() % INT_MAX;
+		_container.push_back(random);
+	}
+}
+
+static long int calculateSpan( std::vector<int>& container, const size_t& request)
+{
+	std::vector<int>::const_iterator it = container.begin();
+	std::vector<int>::iterator sortIt = container.begin();
+	std::vector<int>::iterator sortItEnd = container.end();
+	std::vector<int>::const_iterator itEnd = container.end();
+	
+	if (!isContainerOrdered(it, itEnd))
+		std::sort(sortIt, sortItEnd);
+	return (request == 0 ? shortest(it, itEnd) : longest(container));	
+}
+
+long int	Span::shortestSpan( void )
+{
+	if (_container.size() < 2)
+		throw Span::ContainerFewElementsException();
 	return calculateSpan(_container, 0);
 }
 
-int	Span::longestSpan( void )
+long int	Span::longestSpan( void )
 {
+	if (_container.size() < 2)
+		throw Span::ContainerFewElementsException();
 	return calculateSpan(_container, 1);
 }
+
+std::vector<int>&	Span::getContainer( void ) { return _container; }
+
+const unsigned int&		Span::getMaxSize( void ) const { return _maxSize; }
