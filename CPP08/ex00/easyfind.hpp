@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:35:40 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/07 14:50:30 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/12 15:45:13 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <list>
 # include <vector>
 # include <deque>
-# include <typeinfo>
+# include <exception>
+# include <algorithm>
 
 template <typename T>
 typename T::iterator	easyfind( T& container, const int& value );
