@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 11:35:40 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/12 15:45:13 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:49:55 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <algorithm>
 
 template <typename T>
-typename T::iterator	easyfind( T& container, const int& value );
+typename T::const_iterator	easyfind( const T& container, const int& value );
 
 class ValueNotFoundException : public std::exception
 {

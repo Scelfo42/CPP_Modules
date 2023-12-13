@@ -6,7 +6,7 @@
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 15:14:40 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/12 15:35:52 by cscelfo          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:09:08 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,23 @@ int main( void )
 		mstack.push(737);
 		std::cout << "Stack operation: pushed 737" << std::endl;
 		mstack.push(0);
-		std::cout << "Stack operation: pushed 0" << std::endl;
+		std::cout << "Stack operation: pushed 0" << std::endl << "------------------" << std::endl;
 		MutantStack<int>::iterator it = mstack.begin();
 		MutantStack<int>::iterator ite = mstack.end();
+		MutantStack<int>::reverseIterator rIt = mstack.reverseBegin();
+		MutantStack<int>::reverseIterator rItEnd = mstack.reverseEnd();
 		std::cout << "Iterating through the stack: " << *it << std::endl;
 		++it;
 		std::cout << "Moving iterator to the second element: " << *it << std::endl;
 		--it;
-		std::cout << "Moving back iterator to the first element: " << *it << std::endl;
-		while (it != ite)
-		{
+		std::cout << "Moving back iterator to the first element: " << *it << std::endl << "------------------" << std::endl;
+		for (; it != ite; ++it)
 			std::cout << *it << std::endl;
-			++it;
-		}
-		std::stack<int> s(mstack);
+		std::cout << "------------------" << std::endl << "Iterating through the stack in reverse: " << *rIt << std::endl << "------------------" << std::endl;
+		for (; rIt != rItEnd; ++rIt)
+			std::cout << *rIt << std::endl;
+		std::cout << "------------------" << std::endl;
 	}
-	std::cout << std::endl;
 	{
 		std::list<int> list;
 
@@ -66,19 +67,21 @@ int main( void )
 		list.push_back(737);
 		std::cout << "list operation: pushed 737" << std::endl;
 		list.push_back(0);
-		std::cout << "list operation: pushed 0" << std::endl;
+		std::cout << "list operation: pushed 0" << std::endl << "------------------" << std::endl;
 		std::list<int>::iterator it = list.begin();
 		std::list<int>::iterator ite = list.end();
+		std::list<int>::reverse_iterator rIt = list.rbegin();
+		std::list<int>::reverse_iterator rItEnd = list.rend();
 		std::cout << "Iterating through the list: " << *it << std::endl;
 		++it;
 		std::cout << "Moving iterator to the second element: " << *it << std::endl;
 		--it;
-		std::cout << "Moving back iterator to the first element: " << *it << std::endl;
-		while (it != ite)
-		{
+		std::cout << "Moving back iterator to the first element: " << *it << std::endl << "------------------" << std::endl;
+		for (; it != ite; ++it)
 			std::cout << *it << std::endl;
-			++it;
-		}
+		std::cout << "------------------" << std::endl << "Iterating through the list in reverse: " << *rIt << std::endl << "------------------" << std::endl;
+		for (; rIt != rItEnd; ++rIt)
+			std::cout << *rIt << std::endl;		
 	}
 	return 0;
 }
