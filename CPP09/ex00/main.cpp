@@ -5,41 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cscelfo <cscelfo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 15:16:43 by cscelfo           #+#    #+#             */
-/*   Updated: 2023/12/14 16:07:11 by cscelfo          ###   ########.fr       */
+/*   Created: 2023/12/20 10:46:48 by cscelfo           #+#    #+#             */
+/*   Updated: 2023/12/20 11:33:13 by cscelfo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
+#include "BitcoinExchange.hpp"
 
-int	main( void )
+int main( int ac, char **av )
 {
-	Span sp = Span(100);
-	
-	try
+	if (ac != 2)
 	{
-		sp.addNumber(INT_MAX);
-		sp.addNumber(INT_MIN);
+		std::cerr << "Error: could not open file." << std::endl;
+		return 1;
 	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << sp.shortestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		std::cout << sp.longestSpan() << std::endl;	
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return 0;
+	exchange(av[1]);
 }
